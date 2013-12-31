@@ -1,9 +1,15 @@
 OrderSystem::Application.routes.draw do
+  resources :vote_items
+
+
+  get "menu/index"
+
   resources :foods
 
 
   devise_for :users
 
+  root :to => 'menu#index', :as => 'menu'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -3,7 +3,7 @@
 <table>
   <tr>
     <th>Title</th>
-    <th>Image url</th>
+    <th>Description</th>
     <th>Price</th>
     <th></th>
     <th></th>
@@ -13,7 +13,7 @@
 <% @foods.each do |food| %>
   <tr>
     <td><%= food.title %></td>
-    <td><%= food.image_url %></td>
+    <td><%= truncate(strip_tags(food.description), :length => 80) %></td>
     <td><%= food.price %></td>
     <td><%= link_to 'Show', food %></td>
     <td><%= link_to 'Edit', edit_food_path(food) %></td>

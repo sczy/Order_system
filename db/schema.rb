@@ -11,14 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131231045016) do
+ActiveRecord::Schema.define(:version => 20131231093443) do
 
   create_table "foods", :force => true do |t|
     t.string   "title"
     t.string   "image_url"
-    t.decimal  "price",      :precision => 8, :scale => 2
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
+    t.decimal  "price",       :precision => 8, :scale => 2
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.text     "description"
   end
 
   create_table "users", :force => true do |t|
@@ -38,5 +39,12 @@ ActiveRecord::Schema.define(:version => 20131231045016) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "vote_items", :force => true do |t|
+    t.integer  "food_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end

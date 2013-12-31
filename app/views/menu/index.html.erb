@@ -1,0 +1,46 @@
+<!-- <div class="row">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <div class="caption">
+        <h3>title</h3>
+        <p>XXXXXXXX</p>
+        <p><a href="#" class="btn btn-primary" role="button">Vote</a></p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <div class="caption">
+        <h3>title</h3>
+        <p>XXXXXXXX</p>
+        <p><a href="#" class="btn btn-primary" role="button">Vote</a></p>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+  <% if notice %>
+  <p id="notice"><%= notice %></p>
+  <% end %>
+
+   <h1><%= "MENU" %></h1>
+
+<div class="row">
+  <% @foods.each do |food| %>
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <div class="caption">
+      	<h3><%= food.title %></h3>
+      	<p><%= sanitize(food.description) %></p>
+      	<p class="price_line">
+      		<span class="price"><%=  number_to_currency(food.price) %></span>
+      	</p>
+        <%= button_to 'Vote', vote_items_path(:food_id => food), :class => 'btn btn-info' %>
+      </div>
+    </div>
+  </div>
+   <% end %>
+</div>
+ 
+
