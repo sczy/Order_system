@@ -8,4 +8,25 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
   has_many :vote_items
+  has_one :user_role
+  
+  after_save :add_attribute
+  
+  def add_attribute
+    if self.user_role.nil?
+      self.user_role = UserRole.new
+      self.user_role.role = 1
+      self.user_role.save!
+    end
+  end
+  
+  def vote_food(food_id)
+    current_item = self.vote_items.find_by_food_id(food_id)
+    if current_item
+      current_item
+    else
+      current_item = self.vote_items.build(:food_id => food_id)
+    end
+    current_item
+  end
 end

@@ -1,4 +1,7 @@
 OrderSystem::Application.routes.draw do
+  resources :user_roles
+
+
   resources :vote_items
 
 

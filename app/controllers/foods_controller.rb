@@ -1,6 +1,7 @@
 class FoodsController < ApplicationController
   # GET /foods
   # GET /foods.json
+  before_filter :authorize_amin
   def index
     @foods = Food.all
 

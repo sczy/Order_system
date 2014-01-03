@@ -11,8 +11,8 @@
 
 <% @vote_items.each do |vote_item| %>
   <tr>
-    <td><%= vote_item.food_id %></td>
-    <td><%= vote_item.user_id %></td>
+    <td><%= vote_item.food.title %></td>
+    <td><%= vote_item.user.email %></td>
     <td><%= link_to 'Show', vote_item %></td>
     <td><%= link_to 'Edit', edit_vote_item_path(vote_item) %></td>
     <td><%= link_to 'Destroy', vote_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -22,4 +22,4 @@
 
 <br />
 
-<%= link_to 'New Vote item', new_vote_item_path %>
+<%#= link_to 'New Vote item', new_vote_item_path %>

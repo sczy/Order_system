@@ -1,0 +1,39 @@
+<div class="container">
+<h1>Users</h1>
+<div class="table-responsive">
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Name</th>
+        <th>roles</th>
+        <th>operation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @user_roles.each do |user_role| %>
+        <tr>
+          <td><%= user_role.user.email %></td>
+          <td>username</td>
+          <td><%if (user_role.role == 0) %>
+              admin
+              <% else %>
+              customer
+              <% end %>
+          </td>
+          <td>
+            <%= link_to 'Edit', edit_user_role_path(user_role) %> &nbsp
+            <%= link_to 'Destroy', user_role, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+          
+        </tr>
+        <% end %>
+     
+    </tbody>
+  </table>
+</div>
+<hr>
+<footer>
+<p>© Company 2013</p>
+</footer>
+</div>

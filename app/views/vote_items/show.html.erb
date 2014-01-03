@@ -1,13 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <b>counter:</b>
+  <%= @vote_item.counter %>
+</p>
+
+<p>
   <b>Food:</b>
-  <%= @vote_item.food_id %>
+  <%= @vote_item.food.title %>
 </p>
 
 <p>
   <b>User:</b>
-  <%= @vote_item.user_id %>
+  <%= @vote_item.user.email %>
 </p>
 
 

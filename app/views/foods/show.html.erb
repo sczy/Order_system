@@ -4,7 +4,9 @@
   <b>Title:</b>
   <%= @food.title %>
 </p>
-
+<div>
+  <%= image_tag @food.image_url_url(:thumb).to_s %>
+</div>
 <p>
   <b>Image url:</b>
   <%= @food.image_url %>

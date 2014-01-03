@@ -19,28 +19,62 @@
     </div>
   </div>
 </div> -->
-
+   
+<div class="container">
+  
   <% if notice %>
-  <p id="notice"><%= notice %></p>
+  <div class="alert alert-warning alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <strong>Message:</strong> <%= notice %>
+  </div>
+
   <% end %>
-
-   <h1><%= "MENU" %></h1>
-
-<div class="row">
-  <% @foods.each do |food| %>
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <div class="caption">
-      	<h3><%= food.title %></h3>
-      	<p><%= sanitize(food.description) %></p>
-      	<p class="price_line">
-      		<span class="price"><%=  number_to_currency(food.price) %></span>
-      	</p>
-        <%= button_to 'Vote', vote_items_path(:food_id => food), :class => 'btn btn-info' %>
+  
+  <div class="row ">
+    <div class="col-xs-12 col-sm-12">
+      <div class="jumbotron">
+        <h2>MENU</h2>
+         <!-- <% @foods.each do |food| %>
+         <p><%= food.vote_items.count %>&times<%= food.title%></p>
+         <% end %> 
+         -->
+        <p>good good good good good good good good </p>
+      </div>
+    
+      <div class="row">
+        <% @foods.each do |food| %>
+        <div class="col-6 col-sm-6 col-lg-4">
+        	<h3><%= food.title %></h3>
+          <p>
+            <%= image_tag food.image_url_url(:thumb).to_s %>
+          </p>
+        	<p><%= sanitize(food.description) %></p>
+        	<p class="price_line">
+        		<span class="price"><%=  number_to_currency(food.price) %></span>
+        	</p>
+          
+          <p class="row">
+          <%= button_to 'Vote'+'+'+food.vote_items.count.to_s, vote_items_path(:food_id => food), :class => 'btn btn-info btn-sm col-md-3' %>
+          
+        
+            <%if food.vote_items.find_by_user_id(current_user.id) %>
+          <%= link_to 'Cancel', current_user.vote_items.find_by_food_id(food.id), method: :delete, :class => 'btn btn-info btn-sm col-md-3' %>
+          <% end %>
+        </p>
+        
+          
+        </div>
+        <% end %>
       </div>
     </div>
   </div>
-   <% end %>
+  
+  <hr>
+  <footer>
+  <p>© Company 2013</p>
+  </footer>
+  
 </div>
+ 
  
 
