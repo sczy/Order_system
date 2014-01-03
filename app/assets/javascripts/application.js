@@ -13,3 +13,13 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+
+
+// 
+// $(document).ready(function(){
+//   $(".nav.navbar-nav li").click(function(){
+//         $(".nav.navbar-nav li").removeClass("active")
+//         $(this).addClass("active");
+//   });
+// });
+

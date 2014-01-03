@@ -4,6 +4,8 @@ class FoodsController < ApplicationController
   before_filter :authorize_amin
   def index
     @foods = Food.all
+    @foods = Food.paginate :page=>params[:page], :order=>'created_at desc',
+    :per_page=>9
 
     respond_to do |format|
       format.html # index.html.erb
@@ -61,7 +63,7 @@ class FoodsController < ApplicationController
 
     respond_to do |format|
       if @food.update_attributes(params[:food])
-        format.html { redirect_to @food, notice: 'Food was successfully updated.' }
+        format.html { redirect_to foods_url}
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

@@ -10,10 +10,10 @@
         <% @foods.each do |food| %>
         <div class="col-6 col-sm-6 col-lg-4">
         	<h3><%= food.title %></h3>
-          <p>
+          <p class="img">
             <%= image_tag food.image_url_url(:thumb).to_s %>
           </p>
-        	<p><%= sanitize(food.description) %></p>
+        	<p class="dsp"><%= sanitize(food.description) %></p>
         	<p class="price_line">
         		<span class="price"><%=  number_to_currency(food.price) %></span>
         	</p>
@@ -28,6 +28,7 @@
         </div>
         <% end %>
       </div>
+      <p><%= will_paginate @foods %></p>
     </div>
   </div>
   

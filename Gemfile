@@ -30,6 +30,7 @@ gem 'devise'
 
 gem 'carrierwave'
 gem "rmagick"
+gem 'will_paginate'
 
 gem 'jquery-rails'
 
