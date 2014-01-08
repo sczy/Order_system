@@ -1,4 +1,3 @@
-<div class="edit">
 <%= form_for(@food) do |f| %>
   <% if @food.errors.any? %>
     <div id="error_explanation">
@@ -35,8 +34,22 @@
     <%= f.label :price %><br />
     <%= f.text_field :price, :class => "form-control" %>
   </div>
+  
+  <div class="field">
+    <%= f.label :category %><br />
+    <%= select_tag :category, options_for_select(Category.all.map{ |c| [c.title, c.id] }), 
+      { :class => 'form-control' } %>
+    <%#= f.select :food_category, Category.all.map{ |c| [c.title, c.id] } %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :vendor %><br />
+    <%= select_tag :vendor, options_for_select(Vendor.all.map{ |v| [v.title, v.id] }),
+       { :class => 'form-control' } %>
+  </div>
+  
   <div class="actions">
     <%= f.submit "Updata food", :class => "btn btn-lg btn-primary" %>
   </div>
 <% end %>
-</div>
+

@@ -10,7 +10,9 @@ class Food < ActiveRecord::Base
     :message => 'must be a URL for GIF, JPG, JPEG or PNG image.'
   }
   
-  has_many :vote_items
+  has_many :vote_items, :dependent => :destroy
+  has_one :food_category, :dependent => :destroy
+  has_one :food_vendor, :dependent => :destroy
   mount_uploader :image_url, ImageUploader
   
   def vote_counter

@@ -1,4 +1,16 @@
 OrderSystem::Application.routes.draw do
+  resources :food_vendors
+
+
+  resources :vendors
+
+
+  resources :food_categories
+
+
+  resources :categories
+
+
   resources :user_roles
 
 

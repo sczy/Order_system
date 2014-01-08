@@ -40,16 +40,16 @@ class VoteItemsController < ApplicationController
   # POST /vote_items
   # POST /vote_items.json
   def create
-    
     @current_user = current_user
-    food = Food.find(params[:food_id])
+    @food = Food.find(params[:food_id])
     # @vote_item = @current_user.vote_items.build(:food => food)
     # @vote_item = VoteItem.new(params[:vote_item])
-    @vote_item = @current_user.vote_food(food.id)
-    
+    @vote_item = @current_user.vote_food(@food.id)
+    @foods = Food.all
     respond_to do |format|
       if @vote_item.save
         format.html { redirect_to menu_url}
+        format.js
         format.json { render json: @vote_item, status: :created, location: @vote_item }
       else
         format.html { render action: "new" }
@@ -66,6 +66,7 @@ class VoteItemsController < ApplicationController
     respond_to do |format|
       if @vote_item.update_attributes(params[:vote_item])
         format.html { redirect_to @vote_item, notice: 'Vote item was successfully updated.' }
+        format.js 
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -79,9 +80,10 @@ class VoteItemsController < ApplicationController
   def destroy
     @vote_item = VoteItem.find(params[:id])
     @vote_item.destroy
-
+    @foods = Food.all
     respond_to do |format|
       format.html { redirect_to menu_url}
+      format.js
       # format.html { redirect_to vote_items_url }
       format.json { head :no_content }
     end

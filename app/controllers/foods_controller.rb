@@ -4,9 +4,8 @@ class FoodsController < ApplicationController
   before_filter :authorize_amin
   def index
     @foods = Food.all
-    @foods = Food.paginate :page=>params[:page], :order=>'created_at desc',
+    @foods = Food.paginate :page=>params[:page], :order =>'created_at asc',
     :per_page=>9
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @foods }
@@ -28,7 +27,7 @@ class FoodsController < ApplicationController
   # GET /foods/new.json
   def new
     @food = Food.new
-
+    # @category = Category.all
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @food }
@@ -44,7 +43,15 @@ class FoodsController < ApplicationController
   # POST /foods.json
   def create
     @food = Food.new(params[:food])
+    # @food.category << Category.find(params[:category])
+     # @food.food_category = FoodCategory.find(params[:category])
 
+     @category = Category.find(params[:category])
+     @food.food_category = FoodCategory.new(:category_id => @category.id);
+     
+     @vendor = Vendor.find(params[:vendor])
+     @food.food_vendor = FoodVendor.new(:vendor_id => @vendor.id);
+     
     respond_to do |format|
       if @food.save
         format.html { redirect_to @food, notice: 'Food was successfully created.' }
@@ -60,9 +67,12 @@ class FoodsController < ApplicationController
   # PUT /foods/1.json
   def update
     @food = Food.find(params[:id])
-
+    
+    @category = Category.find(params[:category])
+    @vendor = Vendor.find(params[:vendor])
+    
     respond_to do |format|
-      if @food.update_attributes(params[:food])
+      if @food.update_attributes(params[:food]) && @food.food_category.update_attributes(:category_id => @category.id) && @food.food_vendor.update_attributes(:vendor_id => @vendor.id)
         format.html { redirect_to foods_url}
         format.json { head :no_content }
       else

@@ -1,0 +1,16 @@
+<div class="col-6 col-sm-6 col-lg-4" >
+	<h3><%= food.title %></h3>
+  <p class="img">
+    <%= image_tag food.image_url_url(:thumb).to_s %>
+  </p>
+	<p class="dsp"><%= sanitize(food.description) %></p>
+	<p class="price_line">
+		<span class="price"><%= sprintf("￥%0.02f", food.price) %></span>
+	</p>
+
+  <%if food.vote_items.find_by_user_id(current_user.id) %>
+    <%= link_to 'Cancel'+"+"+food.vote_items.count.to_s, current_user.vote_items.find_by_food_id(food.id), method: :delete, :class => 'btn btn-info btn-sm col-md-3', :remote => true  %>
+  <% else %>
+     <%= button_to 'Vote'+"+"+food.vote_items.count.to_s , vote_items_path(:food_id => food), :class => 'btn btn-info btn-sm col-md-3', :remote => true %>
+  <% end %>
+</div>

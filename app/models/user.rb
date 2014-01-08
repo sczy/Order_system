@@ -7,9 +7,9 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
-  has_many :vote_items
+
   has_one :user_role
-  
+  has_many :vote_items, :dependent => :destroy
   after_save :add_attribute
   
   def add_attribute
