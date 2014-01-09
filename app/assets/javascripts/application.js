@@ -12,11 +12,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require vote_items
 //= require_tree .
 
 
 // 
 
 $(document).ready(function(){
-
+  $('.foodajax').on('ajax:beforeSend', function(event, xhr, settings){
+    $(this).find('.votebtn').addClass('you')
+  });
 });

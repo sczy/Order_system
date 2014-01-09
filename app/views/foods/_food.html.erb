@@ -1,4 +1,4 @@
-<div class="col-6 col-sm-6 col-lg-4" >
+<div class="col-6 col-sm-6 col-lg-4 foodajax" >
 	<h3><%= food.title %></h3>
   <p class="img">
     <%= image_tag food.image_url_url(:thumb).to_s %>
@@ -9,8 +9,8 @@
 	</p>
 
   <%if food.vote_items.find_by_user_id(current_user.id) %>
-    <%= link_to 'Cancel'+"+"+food.vote_items.count.to_s, current_user.vote_items.find_by_food_id(food.id), method: :delete, :class => 'btn btn-info btn-sm col-md-3', :remote => true  %>
+    <%= button_to 'Cancel'+"+"+food.vote_items.count.to_s, current_user.vote_items.find_by_food_id(food.id), method: :delete, :class => 'btn btn-info btn-sm col-md-3 ', :remote => true  %>
   <% else %>
-     <%= button_to 'Vote'+"+"+food.vote_items.count.to_s , vote_items_path(:food_id => food), :class => 'btn btn-info btn-sm col-md-3', :remote => true %>
+     <%= button_to 'Vote'+"+"+food.vote_items.count.to_s , vote_items_path(:food_id => food), :class => 'btn btn-info btn-sm col-md-3 votebtn', :remote => true %>
   <% end %>
 </div>
