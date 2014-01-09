@@ -1,1 +1,1 @@
-$(".you").val("<%= escape_javascript 10086.to_s%>");
+$("#tar").replaceWith("<%= escape_javascript render(:partial => 'food1', :object => @food)%>");

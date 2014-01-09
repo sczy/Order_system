@@ -45,7 +45,6 @@ class VoteItemsController < ApplicationController
     # @vote_item = @current_user.vote_items.build(:food => food)
     # @vote_item = VoteItem.new(params[:vote_item])
     @vote_item = @current_user.vote_food(@food.id)
-    @foods = Food.all
     respond_to do |format|
       if @vote_item.save
         format.html { redirect_to menu_url}
@@ -79,8 +78,8 @@ class VoteItemsController < ApplicationController
   # DELETE /vote_items/1.json
   def destroy
     @vote_item = VoteItem.find(params[:id])
+    @food = @vote_item.food
     @vote_item.destroy
-    @foods = Food.all
     respond_to do |format|
       format.html { redirect_to menu_url}
       format.js

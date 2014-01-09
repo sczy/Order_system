@@ -12,14 +12,20 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require vote_items
-//= require_tree .
+// require vote_items
+// require_tree .
 
-
-// 
 
 $(document).ready(function(){
   $('.foodajax').on('ajax:beforeSend', function(event, xhr, settings){
-    $(this).find('.votebtn').addClass('you')
+    $(this).find('.food-details').attr('id','tar');
+  });
+  
+});
+
+$(document).ready(function(){
+  $('.nav.nav-tabs li').on('click', function(){
+    $('.nav.nav-tabs li').removeClass('active');
+    $(this).addClass('active');
   });
 });

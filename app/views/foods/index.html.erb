@@ -6,7 +6,12 @@
         <p>good good good good good good good good </p>
       </div>
       
-      <%= link_to 'New ', new_food_path, :class => 'btn btn-default btn-sm' %>
+      <%= link_to raw("<span class=\"glyphicon glyphicon-plus\"></span>&nbsp;&nbsp;Food"), 
+      new_food_path, :class => 'btn btn-default btn-sm' %>
+      <%= link_to raw("<span class=\"glyphicon glyphicon-plus\"></span>&nbsp;&nbsp;Vendor"),
+       new_vendor_path, :class => 'btn btn-default btn-sm' %>
+      <%= link_to raw("<span class=\"glyphicon glyphicon-plus\"></span>&nbsp;&nbsp;Category"),
+       new_category_path, :class => 'btn btn-default btn-sm' %>
       <br />
       <div class="row">
         <% @foods.each do |food| %>
@@ -21,10 +26,9 @@
         	</p>
           
           <p>
-            <%= link_to 'Edit', edit_food_path(food), :class => 'btn btn-info btn-sm'  %>
-            <%#= link_to 'New ', new_food_path , :class => 'btn btn-info btn-sm'  %>
-            <%= link_to 'Destroy', food, method: :delete, data: { confirm: 'Are you sure?' },
-              :class => 'btn btn-info btn-sm' %>
+            <%= link_to raw("<span class=\"glyphicon glyphicon-edit\"></span>&nbsp;&nbsp;编辑"), edit_food_path(food), :class => 'btn btn-info btn-sm'  %>
+            <%= link_to raw("<span class=\"glyphicon glyphicon-trash\"></span>&nbsp;&nbsp;删除"), food, method: :delete, data: { confirm: 'Are you sure?' },
+              :class => 'btn btn-danger btn-sm' %>
           </p>
         </div>
         <% end %>

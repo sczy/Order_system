@@ -1,6 +1,5 @@
 class Food < ActiveRecord::Base
   default_scope :order => 'title'
-  scope :sort, lambda{ |foods| foods.sort_by(&:vote_counter).reverse } 
   attr_accessible :image_url, :price, :title, :description, :remote_image_url_url
   
   validates :title, :description, :image_url, :presence => true

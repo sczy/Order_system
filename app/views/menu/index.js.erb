@@ -1,1 +1,4 @@
 $(".row .row").html("<%= escape_javascript render(@foods)%>");
+$('.foodajax').on('ajax:beforeSend', function(event, xhr, settings){
+    $(this).find('.food-details').attr('id','tar');
+  });

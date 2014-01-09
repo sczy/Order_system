@@ -44,7 +44,8 @@ class VendorsController < ApplicationController
 
     respond_to do |format|
       if @vendor.save
-        format.html { redirect_to @vendor, notice: 'Vendor was successfully created.' }
+        # format.html { redirect_to @vendor, notice: 'Vendor was successfully created.' }
+        format.html { redirect_to foods_url }
         format.json { render json: @vendor, status: :created, location: @vendor }
       else
         format.html { render action: "new" }

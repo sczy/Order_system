@@ -14,10 +14,12 @@
         <h2>MENU</h2>
         <p>good good good good good good good good </p>
       </div>
-      <%= link_to "全部", :remote => true%>
-      <% @categories.each do |category| %>
-        <%= link_to category.title ,menu_path(:category_id => category.id), :remote => true%>
-      <% end %>
+      <ol class="nav nav-tabs">
+        <li class='active'><%= link_to "全部", :remote => true%></li>
+        <% @categories.each do |category| %>
+          <li><%= link_to category.title ,menu_path(:category_id => category.id), :remote => true%></li>
+        <% end %>
+      </ol>
       <div class="row ">
         <%= render(@foods) %>
       </div>

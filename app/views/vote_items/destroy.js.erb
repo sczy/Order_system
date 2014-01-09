@@ -1,1 +1,1 @@
-$(".row .row").html("<%= escape_javascript render(@foods)%>");
+$("#tar").replaceWith("<%= escape_javascript render(:partial => 'food1', :object => @food)%>");
