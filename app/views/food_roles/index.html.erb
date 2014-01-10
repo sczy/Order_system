@@ -1,0 +1,25 @@
+<h1>Listing food_roles</h1>
+
+<table>
+  <tr>
+    <th>Food</th>
+    <th>Role</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @food_roles.each do |food_role| %>
+  <tr>
+    <td><%= food_role.food.title %></td>
+    <td><%= food_role.role %></td>
+    <td><%= link_to 'Show', food_role %></td>
+    <td><%= link_to 'Edit', edit_food_role_path(food_role) %></td>
+    <td><%= link_to 'Destroy', food_role, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Food role', new_food_role_path %>

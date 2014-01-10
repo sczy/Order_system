@@ -1,0 +1,20 @@
+<tr>
+  <td><%= user_role.user.email %></td>
+  <td>username</td>
+  <td><%if (user_role.role == 0) %>
+      admin
+      <% else %>
+      customer
+      <% end %>
+  </td>
+  <td>
+    <% if (user_role.user_id != current_user.id)%>
+    <%= link_to 'Edit', edit_user_role_path(user_role) %> &nbsp
+    <%= link_to 'Destroy', user_role, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% else %>
+    <span style="color:#eee;">Edit &nbsp; Destroy</span>
+    <% end %>
+  </td>
+  
+</tr>
+       

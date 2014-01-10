@@ -1,0 +1,54 @@
+<div class="container">
+<h1>Users</h1>
+<div class="table-responsive">
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Name</th>
+        <th>roles</th>
+        <th>operation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render(@user_roles) %>
+    </tbody>
+    
+  </table>
+  
+  <hr>
+  <h1>Vendors</h1>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>name</th>
+        <th>roles</th>
+        <th>operation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render(@vendor_roles) %>
+    </tbody>
+  </table>
+ 
+  <hr>
+  <h1>Foods</h1>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>name</th>
+        <th>roles</th>
+        <th>operation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render(@food_roles) %>
+    </tbody>
+  </table>
+   
+</div>
+<hr>
+<footer>
+<p>© Company 2013</p>
+</footer>
+</div>

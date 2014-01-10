@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140107080048) do
+ActiveRecord::Schema.define(:version => 20140110074211) do
 
   create_table "categories", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -19,11 +19,34 @@ ActiveRecord::Schema.define(:version => 20140107080048) do
     t.string   "title"
   end
 
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0, :null => false
+    t.integer  "attempts",   :default => 0, :null => false
+    t.text     "handler",                   :null => false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
   create_table "food_categories", :force => true do |t|
     t.integer  "food_id"
     t.integer  "category_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "food_roles", :force => true do |t|
+    t.integer  "food_id"
+    t.integer  "role"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "food_vendors", :force => true do |t|
@@ -66,6 +89,13 @@ ActiveRecord::Schema.define(:version => 20140107080048) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "vendor_roles", :force => true do |t|
+    t.integer  "vendor_id"
+    t.integer  "role"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "vendors", :force => true do |t|
     t.string   "title"

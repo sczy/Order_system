@@ -61,7 +61,8 @@ class UserRolesController < ApplicationController
 
     respond_to do |format|
       if @user_role.update_attributes(params[:user_role])
-        format.html { redirect_to @user_role, notice: 'User role was successfully updated.' }
+        # format.html { redirect_to @user_role, notice: 'User role was successfully updated.' }
+        format.html { redirect_to set_url}
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

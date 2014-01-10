@@ -1,0 +1,13 @@
+<tr>
+  <td><%= vendor_role.vendor.title %></td>
+  <td><%if (vendor_role.role == 0) %>
+      白名单
+      <% else %>
+      黑名单
+      <% end %>
+  </td>
+  <td>
+    <%= link_to 'Edit', edit_vendor_role_path(vendor_role) %> &nbsp
+    <%= link_to 'Destroy', vendor_role, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </td>
+</tr>

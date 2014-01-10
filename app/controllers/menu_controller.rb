@@ -7,6 +7,7 @@ class MenuController < ApplicationController
     else
       @foods = Food.all
     end
+    @foods =  @foods - FoodRole.select_food_by_role(1)
     @categories = Category.all
     
     respond_to do |format|

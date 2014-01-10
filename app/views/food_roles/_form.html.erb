@@ -1,0 +1,21 @@
+<%= form_for(@food_role) do |f| %>
+  <% if @food_role.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@food_role.errors.count, "error") %> prohibited this food_role from being saved:</h2>
+
+      <ul>
+      <% @food_role.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :role %><br />
+    <%= f.number_field :role ,:in => 0..1 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -13,7 +13,17 @@ class Food < ActiveRecord::Base
   has_many :vote_items, :dependent => :destroy
   has_one :food_category, :dependent => :destroy
   has_one :food_vendor, :dependent => :destroy
+  has_one :food_role, :dependent => :destroy
   mount_uploader :image_url, ImageUploader
+  after_save :add_attribute
+
+  def add_attribute
+    if self.food_role.nil?
+      self.food_role = FoodRole.new
+      self.food_role.role = 0
+      self.food_role.save!
+    end
+  end
   
   def vote_counter
     self.vote_items.count

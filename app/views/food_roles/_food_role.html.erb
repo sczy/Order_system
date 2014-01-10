@@ -1,0 +1,13 @@
+<tr>
+  <td><%= food_role.food.title %></td>
+  <td><%if (food_role.role == 0) %>
+      白名单
+      <% else %>
+      黑名单
+      <% end %>
+  </td>
+  <td>
+    <%= link_to 'Edit', edit_food_role_path(food_role) %> &nbsp
+    <%= link_to 'Destroy', food_role, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </td>
+</tr>

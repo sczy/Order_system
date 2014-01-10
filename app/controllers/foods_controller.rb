@@ -28,6 +28,7 @@ class FoodsController < ApplicationController
   def new
     @food = Food.new
     # @category = Category.all
+    @vendors = VendorRole.select_vendor_by_role(0)
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @food }
@@ -36,6 +37,7 @@ class FoodsController < ApplicationController
 
   # GET /foods/1/edit
   def edit
+    @vendors = VendorRole.select_vendor_by_role(0)
     @food = Food.find(params[:id])
   end
 

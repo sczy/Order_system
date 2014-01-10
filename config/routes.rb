@@ -1,4 +1,16 @@
 OrderSystem::Application.routes.draw do
+  resources :food_roles
+
+
+  resources :category_roles
+
+
+  resources :vendor_roles
+
+
+  get "set/index"
+  match 'set' => 'set#index'
+
   resources :food_vendors
 
 
