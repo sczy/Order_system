@@ -6,4 +6,8 @@ class VoteItem < ActiveRecord::Base
   def counter
     self.food.vote_items.count
   end
+  
+  def self.clear
+    VoteItem.destroy_all
+  end
 end
