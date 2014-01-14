@@ -1,4 +1,16 @@
 OrderSystem::Application.routes.draw do
+  get "result/index"
+  match 'result' => 'result#index'
+
+  get "prepare/index"
+  match 'prepare' => 'prepare#index'
+
+  # resources :today_vendors
+
+
+  # resources :today_foods
+
+
   resources :food_roles
 
 
@@ -11,13 +23,13 @@ OrderSystem::Application.routes.draw do
   get "set/index"
   match 'set' => 'set#index'
 
-  resources :food_vendors
+  # resources :food_vendors
 
 
   resources :vendors
 
 
-  resources :food_categories
+  # resources :food_categories
 
 
   resources :categories

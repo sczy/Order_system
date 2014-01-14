@@ -62,7 +62,7 @@ class UserRolesController < ApplicationController
     respond_to do |format|
       if @user_role.update_attributes(params[:user_role])
         # format.html { redirect_to @user_role, notice: 'User role was successfully updated.' }
-        format.html { redirect_to set_url}
+        format.html { redirect_to user_roles_url}
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -75,7 +75,8 @@ class UserRolesController < ApplicationController
   # DELETE /user_roles/1.json
   def destroy
     @user_role = UserRole.find(params[:id])
-    @user_role.destroy
+    # @user_role.destroy
+    @user_role.user.destroy
 
     respond_to do |format|
       format.html { redirect_to user_roles_url }

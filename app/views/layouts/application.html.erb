@@ -28,10 +28,10 @@
             <% if (current_user) %>
               <% if (current_user.user_role.role == 0)%>
                 <li><%= link_to 'Foods', foods_path %></li>
-                <li><%= link_to 'Users', set_path %></li>
+                <li><%= link_to 'Users', user_roles_path %></li>
               <% else %>
                 <li class="disabled"><a> Foods</a></li>
-                <li class="disabled"><a> User_roles</a></li>
+                <li class="disabled"><a> Users</a></li>
               <% end %>
             <% end %>
           </ul>

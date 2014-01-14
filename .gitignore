@@ -13,10 +13,3 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-/public/*
-
-*.jpeg
-
-*.jpeg
-
-*.jpeg

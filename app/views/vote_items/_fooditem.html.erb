@@ -1,0 +1,19 @@
+<div class="food-details">
+  <h3><%= fooditem.title %></h3>
+  <p class="img">
+    <%= image_tag fooditem.image_url_url(:thumb).to_s %>
+  </p>
+  <p class="dsp"><%= sanitize(fooditem.description) %></p>
+  <p class="price_line">
+    <span class="price"><%= sprintf("￥%0.02f", fooditem.price) %></span>
+  </p>
+
+  <%if fooditem.vote_items.find_by_user_id(current_user.id) %>
+    <%= link_to raw("<span class=\"glyphicon glyphicon-remove\"></span>&nbsp;&nbsp;取消"),
+     current_user.vote_items.find_by_food_id(fooditem.id), method: :delete, :class => 'btn btn-info btn-sm col-md-3', :remote => true  %>
+  <% else %>
+
+    <%= link_to raw("<span class=\"glyphicon glyphicon-ok\"></span>&nbsp;&nbsp;投票"),
+     vote_items_path(:food_id => fooditem), method: :post, :class => 'btn btn-info btn-sm col-md-3', :remote => true %>
+  <% end %>
+</div>

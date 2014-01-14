@@ -1,23 +1,32 @@
-<h1>Listing vendors</h1>
+<div class="container">
+<h1>Vendor</h1>
+<div class="table-responsive">
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>title</th>
+        <th>operation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @vendors.each do |vendor| %>
+      <tr>
+        <td><%= vendor.title %></td>
+        <td>
+          <%= link_to 'Edit', edit_vendor_path(vendor) %> &nbsp;
+          <%= link_to 'Destroy', vendors_path, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      <tr>
+      <% end %>
+      
+    </tbody>
+  </table>
+  <%= link_to 'New Vendor', new_vendor_path %>
+</div>
+<hr>
+<footer>
+<p>© Company 2013</p>
+</footer>
+</div>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
-<% @vendors.each do |vendor| %>
-  <tr>
-    <td><%= vendor.title %></td>
-    <td><%= link_to 'Show', vendor %></td>
-    <td><%= link_to 'Edit', edit_vendor_path(vendor) %></td>
-    <td><%= link_to 'Destroy', vendor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Vendor', new_vendor_path %>

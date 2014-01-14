@@ -1,0 +1,22 @@
+<div class="setajax">
+<h2 class="head2"><%= vendor.title %></h2>
+<% if vendor.vendor_role.role == 1%>
+  <%= link_to '移出黑名单', set_path(:vendor_role => vendor.vendor_role.id, :role => 0), :remote => true %> &nbsp
+<% else %>
+  <%= link_to '加入黑名单', set_path(:vendor_role => vendor.vendor_role.id, :role => 1), :remote => true %> &nbsp
+<% end %>
+
+<%#= link_to '删除', vendor.vendor_role, method: :delete,:remote => true, data: { confirm: 'Are you sure?' } %>
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>name</th>
+      <th>roles</th>
+      <th>operation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render(FoodVendor.select_food_by_vendor(vendor.id).collect(&:food_role)) %>
+  </tbody>
+</table>
+</div>

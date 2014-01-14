@@ -1,0 +1,4 @@
+$("#set").replaceWith("<%= escape_javascript render(:partial => 'vendors/vendor', :object => @vendor)%>");
+$('.setajax').on('ajax:beforeSend', function(event, xhr, settings){
+  $(this).attr('id','set');
+});

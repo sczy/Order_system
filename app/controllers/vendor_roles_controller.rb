@@ -74,7 +74,8 @@ class VendorRolesController < ApplicationController
   # DELETE /vendor_roles/1.json
   def destroy
     @vendor_role = VendorRole.find(params[:id])
-    @vendor_role.destroy
+    # @vendor_role.destroy
+    @vendor_role.vendor.destroy
 
     respond_to do |format|
       format.html { redirect_to vendor_roles_url }

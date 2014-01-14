@@ -73,7 +73,10 @@ class FoodVendorsController < ApplicationController
   # DELETE /food_vendors/1.json
   def destroy
     @food_vendor = FoodVendor.find(params[:id])
-    @food_vendor.destroy
+    # @food_vendor.destroy
+    if @food_vendor.food
+      @food_vendor.food.destroy
+    end
 
     respond_to do |format|
       format.html { redirect_to food_vendors_url }

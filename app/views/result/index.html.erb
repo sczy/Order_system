@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading"><h3>投票结果</h3></div>
+    <div class="panel-body result">
+      <% @foods.each do |food| %>
+      <div>
+      <%= food.title %>
+      <span>&times; <%= food.vote_counter%></span>
+      </div>
+      <hr>
+      <% end %>
+    </div>
+  </div>
+  
+  <hr>
+  <footer>
+  <p>© Company 2013</p>
+  </footer>
+</div>

@@ -40,6 +40,10 @@ class VoteItemsController < ApplicationController
   # POST /vote_items
   # POST /vote_items.json
   def create
+    if(TodayFood.all.size == 0)
+      return
+    end
+    
     @current_user = current_user
     @food = Food.find(params[:food_id])
     # @vote_item = @current_user.vote_items.build(:food => food)

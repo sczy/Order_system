@@ -9,11 +9,60 @@
   
   <div class="row ">
     <div class="col-xs-12 col-sm-12">
-      <!-- <div class="jumbotron">
-        <h2>MENU</h2>
-        <p>good good good good good good good good </p>
-      </div> -->
-      <ol class="nav nav-tabs">
+     
+      
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <span>今天商家：<%= TodayVendor.first.vendor.title%></span>&nbsp;&nbsp;&nbsp;
+          <% if current_user.admin? %>
+            <% if TodayFood.all.size == 0 && VoteItem.all.size ==0%>
+                <div class="btn-group choice_vendor">
+                  <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    选择今日商家 
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                    <% @vendors.each do |vendor| %>
+                    <% if vendor.id == TodayVendor.first.vendor_id%>
+                      <li class="link active">
+                    <% else %>
+                      <li class="link">
+                    <% end %>
+                      <%= link_to vendor.title ,menu_path(:vendor_id => vendor.id)%></li>
+                    <% end %> 
+                  </ul>
+                </div>
+            <% else %>
+              <% if TodayFood.all.size == 0 && VoteItem.all.size !=0%>
+                <%= link_to "查看投票结果", result_url, :class => 'btn btn-default btn-sm' %>
+              <% else %>
+                <%= link_to "投票中.......", result_url, :class => 'btn btn-default btn-sm' %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+        
+      </div>
+      
+      <% if nil %>
+        <hr>
+        <ol class="vendor breadcrumb">
+          <li>选择商家:&nbsp;</li>
+          <% @vendors.each do |vendor| %>
+          <% if vendor.id == TodayVendor.first.vendor_id%>
+            <li class="link active">
+          <% else %>
+            <li class="link">
+          <% end %>
+            <%= link_to vendor.title ,menu_path(:vendor_id => vendor.id), :remote => true%></li>
+          <% end %> 
+        </ol>
+      <% end %>
+      <hr>
+      
+      <br>
+      <ol class="category nav nav-tabs">
         <li class='active'><%= link_to "全部", :remote => true%></li>
         <% @categories.each do |category| %>
           <li><%= link_to category.title ,menu_path(:category_id => category.id), :remote => true%></li>

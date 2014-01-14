@@ -9,7 +9,7 @@
   </td>
   <td>
     <% if (user_role.user_id != current_user.id)%>
-    <%= link_to 'Edit', edit_user_role_path(user_role) %> &nbsp
+    <%= link_to 'Edit', edit_user_role_path(user_role) %> &nbsp;
     <%= link_to 'Destroy', user_role, method: :delete, data: { confirm: 'Are you sure?' } %>
     <% else %>
     <span style="color:#eee;">Edit &nbsp; Destroy</span>

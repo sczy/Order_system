@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
 
-  has_one :user_role
+  has_one :user_role, :dependent => :destroy
   has_many :vote_items, :dependent => :destroy
   after_save :add_attribute
   
@@ -28,5 +28,13 @@ class User < ActiveRecord::Base
       current_item = self.vote_items.build(:food_id => food_id)
     end
     current_item
+  end
+  
+  def admin?
+    if (self.user_role.role == 0)
+      return true
+    else
+      return false
+    end
   end
 end

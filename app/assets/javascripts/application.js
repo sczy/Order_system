@@ -20,12 +20,26 @@ $(document).ready(function(){
   $('.foodajax').on('ajax:beforeSend', function(event, xhr, settings){
     $(this).find('.food-details').attr('id','tar');
   });
-  
 });
 
 $(document).ready(function(){
-  $('.nav.nav-tabs li').on('click', function(){
-    $('.nav.nav-tabs li').removeClass('active');
+  $('.category.nav-tabs li').on('click', function(){
+    $('.category.nav-tabs li').removeClass('active');
     $(this).addClass('active');
   });
 });
+
+$(document).ready(function(){
+  $('.vendor .link').on('click', function(){
+    $('.vendor .link').removeClass('active');
+    $(this).addClass('active');
+  });
+});
+
+$(document).ready(function(){
+  $('.setajax').on('ajax:beforeSend', function(event, xhr, settings){
+    $(this).attr('id','set');
+  });
+});
+
+

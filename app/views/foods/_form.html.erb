@@ -44,7 +44,7 @@
   
   <div class="field">
     <%= f.label :vendor %><br />
-    <%= select_tag :vendor, options_for_select(@vendors.map{ |v| [v.title, v.id] }),
+    <%= select_tag :vendor, options_for_select(Vendor.all.map{ |v| [v.title, v.id] }),
        { :class => 'form-control' } %>
   </div>
   

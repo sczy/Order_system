@@ -1,13 +1,17 @@
 <tr>
   <td><%= food_role.food.title %></td>
   <td><%if (food_role.role == 0) %>
-      白名单
+      <span>白名单</span>
       <% else %>
-      黑名单
+      <span style="color:red">黑名单</span>
       <% end %>
   </td>
   <td>
-    <%= link_to 'Edit', edit_food_role_path(food_role) %> &nbsp
-    <%= link_to 'Destroy', food_role, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% if food_role.role == 1%>
+      <%= link_to '移出黑名单', set_path(:food_role => food_role.id, :role => 0), :remote => true %> &nbsp
+    <% else %>
+      <%= link_to '加入黑名单', set_path(:food_role => food_role.id, :role => 1), :remote => true %> &nbsp
+    <% end %>
+    <%= link_to '删除', food_role, method: :delete, data: { confirm: 'Are you sure?' }, :remote => true %>
   </td>
 </tr>
