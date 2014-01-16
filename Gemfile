@@ -26,6 +26,10 @@ group :development do
   gem "debugger"
 end
 
+group :production do
+  gem 'mysql'
+end
+
 gem 'devise'
 
 gem 'carrierwave'
@@ -47,7 +51,7 @@ gem 'jquery-rails'
 # gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'capistrano'
 
 # To use debugger
 # gem 'debugger'
