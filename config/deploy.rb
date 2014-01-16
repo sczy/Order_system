@@ -6,6 +6,8 @@ set :repo_url, 'https://github.com/sczy/Order_system.git'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
+# set :user, 'admin'
+set :use_sudo, false
 set :branch, "work"
 
 # Default deploy_to directory is /var/www/my_app
@@ -21,7 +23,8 @@ set :scm, :git
 # set :log_level, :debug
 
 # Default value for :pty is false
-# set :pty, true
+set :pty, true
+set :tmp_dir, deploy_to
 
 # Default value for :linked_files is []
 # set :linked_files, %w{config/database.yml}
