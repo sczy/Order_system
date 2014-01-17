@@ -1,7 +1,7 @@
 # config valid only for Capistrano 3.1
-lock '3.1.0'
 
-set :application, 'Order_system'
+lock '3.1.0'
+set :application, 'order_system'
 set :repo_url, 'https://github.com/sczy/Order_system.git'
 
 # Default branch is :master
@@ -11,7 +11,7 @@ set :use_sudo, false
 set :branch, "work"
 
 # Default deploy_to directory is /var/www/my_app
-set :deploy_to, '/home/#{user}/#{application}'
+set :deploy_to, '/var/www/order_system'
 
 # Default value for :scm is :git
 set :scm, :git
@@ -25,6 +25,10 @@ set :scm, :git
 # Default value for :pty is false
 set :pty, true
 set :tmp_dir, deploy_to
+
+set :rails_env, :production
+set :unicorn_conf, "#{deploy_to}/current/config/unicorn.rb"
+
 
 # Default value for :linked_files is []
 # set :linked_files, %w{config/database.yml}
