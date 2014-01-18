@@ -1,9 +1,10 @@
 # config valid only for Capistrano 3.1
 require "capistrano/setup"
 require "capistrano/deploy"
-require 'capistrano/bundler'
 require 'capistrano/rails/assets'
 require 'capistrano/rails/migrations'
+require 'capistrano/bundler'
+
 
 lock '3.1.0'
 set :application, 'order_system_test'
@@ -34,7 +35,8 @@ set :tmp_dir, deploy_to
 set :rails_env, :production
 set :unicorn_conf, "#{deploy_to}/current/config/unicorn.rb"
 
-set :bundle_flags, '--system --quiet'
+set :rvm_ruby_version, ' 2.0.0@rails402' 
+
 # Default value for :linked_files is []
 # set :linked_files, %w{config/database.yml}
 
@@ -51,12 +53,18 @@ namespace :deploy do
 
   desc 'Restart application'
   task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
+    on roles(:all), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
       # execute :touch, release_path.join('tmp/restart.txt')
+      # execute 'cd /var/www/order_system_test/current && unicorn_rails -c /var/www/order_system_test/current/config/unicorn.rb -D -E production'
+      within current_path do
+        execute :bundle, 'exec unicorn_rails -c /var/www/order_system_test/current/config/unicorn.rb -D -E production'
+        execute :bundle, "exec whenever -i"
+        execute :bundle, 'exec script/delayed_job start RAILS_ENV=development'
+      end
     end
   end
-
+  
   after :publishing, :restart
 
   after :restart, :clear_cache do
@@ -67,12 +75,43 @@ namespace :deploy do
       # end
     end
   end
-  
-  # task :bundle_install do
-#     on roles(:app) do
-#       run "cd #{deploy_to}/current && bundle install"
-#     end
-#   end
-#   after :finished, :bundle_install
+end
 
+namespace :order_unicorn do
+  task :start do
+    on roles(:all), in: :sequence, wait: 5 do
+      within current_path do
+        execute :bundle, 'exec unicorn_rails -c /var/www/order_system_test/current/config/unicorn.rb -D -E production'
+      end
+    end
+  end
+end
+
+
+namespace :order_whenver do
+  task :updata do
+    on roles(:all), in: :sequence, wait: 5 do
+      within current_path do
+        execute :bundle, "exec whenever -i"
+      end
+    end
+  end
+end
+
+namespace :order_delayed_job do
+  task :start do
+    on roles(:all), in: :sequence, wait: 5 do
+      within current_path do
+       execute :bundle, 'exec script/delayed_job start RAILS_ENV=development'
+      end
+    end
+  end
+  
+  task :stop do
+    on roles(:all), in: :sequence, wait: 5 do
+      within current_path do
+       execute :bundle, 'exec script/delayed_job stop RAILS_ENV=development'
+      end
+    end
+  end
 end

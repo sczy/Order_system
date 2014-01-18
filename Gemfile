@@ -54,6 +54,8 @@ gem 'unicorn'
 gem 'capistrano'
 gem 'capistrano-bundler'
 gem 'capistrano-rails'
+gem 'capistrano-rvm'
 
+# gem "sepastian-capistrano3-unicorn", "~> 0.3.2"
 # To use debugger
 # gem 'debugger'
