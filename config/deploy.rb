@@ -34,7 +34,7 @@ set :tmp_dir, deploy_to
 set :rails_env, :production
 set :unicorn_conf, "#{deploy_to}/current/config/unicorn.rb"
 
-
+set :bundle_flags, '--system --quiet'
 # Default value for :linked_files is []
 # set :linked_files, %w{config/database.yml}
 
