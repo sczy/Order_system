@@ -1,7 +1,12 @@
 # config valid only for Capistrano 3.1
+require "capistrano/setup"
+require "capistrano/deploy"
+require 'capistrano/bundler'
+require 'capistrano/rails/assets'
+require 'capistrano/rails/migrations'
 
 lock '3.1.0'
-set :application, 'order_system'
+set :application, 'order_system_test'
 set :repo_url, 'https://github.com/sczy/Order_system.git'
 
 # Default branch is :master
@@ -11,7 +16,7 @@ set :use_sudo, false
 set :branch, "work"
 
 # Default deploy_to directory is /var/www/my_app
-set :deploy_to, '/var/www/order_system'
+set :deploy_to, '/var/www/order_system_test'
 
 # Default value for :scm is :git
 set :scm, :git
@@ -62,5 +67,12 @@ namespace :deploy do
       # end
     end
   end
+  
+  # task :bundle_install do
+#     on roles(:app) do
+#       run "cd #{deploy_to}/current && bundle install"
+#     end
+#   end
+#   after :finished, :bundle_install
 
 end

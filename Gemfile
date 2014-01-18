@@ -27,7 +27,7 @@ group :development do
 end
 
 group :production do
-  gem 'mysql'
+  gem 'mysql2'
 end
 
 gem 'devise'
@@ -52,6 +52,8 @@ gem 'unicorn'
 
 # Deploy with Capistrano
 gem 'capistrano'
+gem 'capistrano-bundler'
+gem 'capistrano-rails'
 
 # To use debugger
 # gem 'debugger'
