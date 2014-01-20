@@ -22,7 +22,7 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: practice
+  database: order_system
   pool: 15
   timeout: 5000
   user: root

@@ -1,13 +1,13 @@
 # config valid only for Capistrano 3.1
-require "capistrano/setup"
-require "capistrano/deploy"
-require 'capistrano/rails/assets'
-require 'capistrano/rails/migrations'
-require 'capistrano/bundler'
+# require 'capistrano/rvm'
+# require "capistrano/setup"
+# require 'capistrano/rails/assets'
+# require 'capistrano/rails/migrations'
+# require 'capistrano/bundler'
 
 
 lock '3.1.0'
-set :application, 'order_system_test'
+set :application, 'order_system'
 set :repo_url, 'https://github.com/sczy/Order_system.git'
 
 # Default branch is :master
@@ -17,7 +17,7 @@ set :use_sudo, false
 set :branch, "work"
 
 # Default deploy_to directory is /var/www/my_app
-set :deploy_to, '/var/www/order_system_test'
+set :deploy_to, '/var/www/order_system'
 
 # Default value for :scm is :git
 set :scm, :git
@@ -33,7 +33,8 @@ set :pty, true
 set :tmp_dir, deploy_to
 
 set :rails_env, :production
-set :unicorn_conf, "#{deploy_to}/current/config/unicorn.rb"
+set :unicorn_config, "#{deploy_to}/current/config/unicorn.rb"
+set :unicorn_pid, '#{deploy_to}/current/tmp/pids/unicorn.pid'
 
 set :rvm_ruby_version, ' 2.0.0@rails402' 
 
@@ -56,9 +57,8 @@ namespace :deploy do
     on roles(:all), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
       # execute :touch, release_path.join('tmp/restart.txt')
-      # execute 'cd /var/www/order_system_test/current && unicorn_rails -c /var/www/order_system_test/current/config/unicorn.rb -D -E production'
       within current_path do
-        execute :bundle, 'exec unicorn_rails -c /var/www/order_system_test/current/config/unicorn.rb -D -E production'
+        execute :bundle, 'exec unicorn_rails -c /var/www/order_system/current/config/unicorn.rb -D -E production'
         execute :bundle, "exec whenever -i"
         execute :bundle, 'exec script/delayed_job start RAILS_ENV=development'
       end
@@ -79,17 +79,30 @@ end
 
 namespace :order_unicorn do
   task :start do
-    on roles(:all), in: :sequence, wait: 5 do
+    on roles(:app), in: :sequence, wait: 5, :except => { :no_release => true } do
       within current_path do
-        execute :bundle, 'exec unicorn_rails -c /var/www/order_system_test/current/config/unicorn.rb -D -E production'
+        execute :bundle, :exec, :unicorn_rails, "-c #{fetch(:unicorn_config)} -D -E #{fetch(:rails_env, 'production')}"
       end
     end
   end
+
+  task :stop do
+    on roles(:app), in: :sequence, wait: 5, :except => { :no_release => true } do
+      execute "kill -QUIT $(cat /var/www/order_system/current/tmp/pids/unicorn.pid)"
+    end
+  end
+
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5, :except => { :no_release => true } do
+      execute "kill -s USR2 $(cat /var/www/order_system/current/tmp/pids/unicorn.pid)"
+    end
+  end
+
 end
 
 
 namespace :order_whenver do
-  task :updata do
+  task :update do
     on roles(:all), in: :sequence, wait: 5 do
       within current_path do
         execute :bundle, "exec whenever -i"
