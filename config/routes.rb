@@ -1,9 +1,9 @@
 OrderSystem::Application.routes.draw do
-  get "result/index"
-  match 'result' => 'result#index'
+  # get "result/index"
+  match 'result' => 'result#index', via: :get
 
-  get "prepare/index"
-  match 'prepare' => 'prepare#index'
+  # get "prepare/index"
+  match 'prepare' => 'prepare#index', via: :get
 
   # resources :today_vendors
 
@@ -20,9 +20,9 @@ OrderSystem::Application.routes.draw do
   resources :vendor_roles
 
 
-  get "set/index"
-  match 'set' => 'set#index'
-
+  # get "set/index"
+  match 'set' => 'set#index', :via => :get
+  
   # resources :food_vendors
 
 
