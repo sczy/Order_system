@@ -4,8 +4,8 @@ class TodayFood < ActiveRecord::Base
   
   def self.timetask_start
     settodayfoods
-    # TodayFood.delay(run_at: 1.minutes.from_now).timetask_stop
-     TodayFood.delay(run_at: 2.hours.from_now).timetask_stop
+    TodayFood.delay(run_at: 30.minutes.from_now).timetask_stop
+     # TodayFood.delay(run_at: 2.hours.from_now).timetask_stop
   end
   def self.timetask_stop
     TodayFood.destroy_all

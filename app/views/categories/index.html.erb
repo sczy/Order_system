@@ -1,5 +1,5 @@
 <div class="container">
-<h1>Category</h1>
+<h2>种类</h2>
 <div class="table-responsive">
   <table class="table table-bordered table-hover">
     <thead>
@@ -13,15 +13,15 @@
       <tr>
         <td><%= category.title %></td>
         <td>
-          <%= link_to 'Edit', edit_category_path(category) %> &nbsp;
-          <%= link_to 'Destroy', categories_path, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to '编辑', edit_category_path(category) %> &nbsp;
+          <%#= link_to 'Destroy', categories_path, method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
       <tr>
       <% end %>
       
     </tbody>
   </table>
-  <%= link_to 'New Category', new_category_path %>
+  <%= link_to '新建种类', new_category_path %>
 </div>
 <hr>
 <footer>

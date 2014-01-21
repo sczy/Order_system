@@ -101,7 +101,7 @@ namespace :order_unicorn do
 end
 
 
-namespace :order_whenver do
+namespace :order_whenever do
   task :update do
     on roles(:all), in: :sequence, wait: 5 do
       within current_path do

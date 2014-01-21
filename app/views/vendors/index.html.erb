@@ -1,5 +1,5 @@
 <div class="container">
-<h1>Vendor</h1>
+<h2>商家</h2>
 <div class="table-responsive">
   <table class="table table-bordered table-hover">
     <thead>
@@ -13,15 +13,15 @@
       <tr>
         <td><%= vendor.title %></td>
         <td>
-          <%= link_to 'Edit', edit_vendor_path(vendor) %> &nbsp;
-          <%= link_to 'Destroy', vendors_path, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to '编辑', edit_vendor_path(vendor) %> &nbsp;
+          <%#= link_to 'Destroy', vendors_path, method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
       <tr>
       <% end %>
       
     </tbody>
   </table>
-  <%= link_to 'New Vendor', new_vendor_path %>
+  <%= link_to '新建商家', new_vendor_path %>
 </div>
 <hr>
 <footer>

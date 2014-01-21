@@ -35,9 +35,9 @@
                 </div>
             <% else %>
               <% if TodayFood.all.size == 0 && VoteItem.all.size !=0%>
-                <%= link_to "查看投票结果", result_url, :class => 'btn btn-default btn-sm' %>
+                <%= link_to "查看投票结果", result_path, :class => 'btn btn-default btn-sm' %>
               <% else %>
-                <%= link_to "投票中.......", result_url, :class => 'btn btn-default btn-sm' %>
+                <%= link_to "投票中.......", result_path, :class => 'btn btn-default btn-sm' %>
               <% end %>
             <% end %>
           <% end %>

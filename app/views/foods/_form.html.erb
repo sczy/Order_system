@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br />
+    <%= f.label :title, "菜名" %><br />
     <%= f.text_field :title, :class => "form-control" %>
   </div>
   
@@ -21,35 +21,35 @@
       <%= f.file_field :image_url %>
     </p>
     <div>
-      <%= f.label :remote_image_url_url, "or image URL" %>
+      <%= f.label :remote_image_url_url, "或者填入图片url地址" %>
       <%= f.text_field :remote_image_url_url, :class => "form-control"%>
     </div>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
+    <%= f.label :description, "描述" %><br />
     <%= f.text_area :description, :rows => "10", :class => "form-control" %>
   </div>
   
   <div class="field">
-    <%= f.label :price %><br />
+    <%= f.label :price, "价格" %><br />
     <%= f.text_field :price, :class => "form-control" %>
   </div>
   
   <div class="field">
-    <%= f.label :category %><br />
+    <%= f.label :category, "种类" %><br />
     <%= select_tag :category, options_for_select(Category.all.map{ |c| [c.title, c.id] }), 
       { :class => 'form-control' } %>
     <%#= f.select :food_category, Category.all.map{ |c| [c.title, c.id] } %>
   </div>
   
   <div class="field">
-    <%= f.label :vendor %><br />
+    <%= f.label :vendor, "商家" %><br />
     <%= select_tag :vendor, options_for_select(Vendor.all.map{ |v| [v.title, v.id] }),
        { :class => 'form-control' } %>
   </div>
   
   <div class="actions">
-    <%= f.submit "Updata food", :class => "btn btn-lg btn-primary" %>
+    <%= f.submit "提交", :class => "btn btn-md btn-primary" %>
+    <%= link_to '返回', foods_path, :class => "btn btn-md btn-primary" %>
   </div>
 <% end %>
-
