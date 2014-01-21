@@ -2,12 +2,12 @@
 
 <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post ,:class => 'form-signin'}) do |f| %>
   <%= devise_error_messages! %>
-  <h2>reset password</h2>
+  <h2>重设密码</h2>
 
   <div>
-  <%= f.email_field :email, :autofocus => true , :class => "form-control", :placeholder => "Email address" %></div>
+  <%= f.email_field :email, :autofocus => true , :class => "form-control", :placeholder => "你的邮件地址" %></div>
 
-  <div><%= f.submit "Send Email", :class => "btn btn-lg btn-primary btn-block" %></div>
+  <div><%= f.submit "发送邮件", :class => "btn btn-lg btn-primary btn-block" %></div>
 
 <% end %>
 
