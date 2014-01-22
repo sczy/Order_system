@@ -1,6 +1,7 @@
 class Vendor < ActiveRecord::Base
   attr_accessible :title
   validates :title, :presence => true
+  validates :title, :uniqueness => true
   has_one :vendor_role, :dependent => :destroy
   has_many :food_vendors, :dependent => :destroy
   after_save :add_attribute
