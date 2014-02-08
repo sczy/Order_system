@@ -57,6 +57,7 @@ namespace :deploy do
     on roles(:all), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
       # execute :touch, release_path.join('tmp/restart.txt')
+      execute "crontab -r"
       within current_path do
         execute :bundle, 'exec unicorn_rails -c /var/www/order_system/current/config/unicorn.rb -D -E production'
         execute :bundle, "exec whenever -i"
