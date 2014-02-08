@@ -1,10 +1,10 @@
 class UserRolesController < ApplicationController
   # GET /user_roles
   # GET /user_roles.json
-  before_filter :authorize_amin
+  # before_filter :authorize_amin
+  load_and_authorize_resource
   def index
     @user_roles = UserRole.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @user_roles }

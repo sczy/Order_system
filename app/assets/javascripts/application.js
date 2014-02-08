@@ -41,5 +41,3 @@ $(document).ready(function(){
     $(this).attr('id','set');
   });
 });
-
-

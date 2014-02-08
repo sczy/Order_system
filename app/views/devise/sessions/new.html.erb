@@ -1,7 +1,23 @@
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'form-signin' }) do |f| %>
+
+  <% if notice %>
+  <div style="color:green">
+    <strong>Message:</strong> <%= notice %>
+  </div>
+  <% end %>
+
+  <% if alert %>
+  <div style="color:red">
+    <strong>Warning:</strong> <%= alert %>
+  </div>
+  <% end %>
+
   <h2>登陆</h2>
+ 
   <div>
-  <%= f.email_field :email, :autofocus => true , :class => "form-control", :placeholder => "邮件地址" %></div>
+  <%= f.text_field :username, :class => "form-control", :placeholder => "用户名" %></div>
+  <div>
+    
   <div>
   <%= f.password_field :password, :class => "form-control", :placeholder => "密码" %></div>
 

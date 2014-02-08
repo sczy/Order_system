@@ -20,6 +20,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'therubyracer'  # If using Ruby
   gem 'less-rails-bootstrap'
+  gem 'bootstrap-will_paginate'
 end
 
 group :development do
@@ -31,6 +32,10 @@ group :production do
 end
 
 gem 'devise'
+gem "cancan"
+
+gem 'simple_form'
+
 
 gem 'carrierwave'
 gem "rmagick"

@@ -1,11 +1,12 @@
 class FoodsController < ApplicationController
   # GET /foods
   # GET /foods.json
-  before_filter :authorize_amin
+  # before_filter :authorize_amin
+   load_and_authorize_resource
   def index
     @foods = Food.all
-    @foods = Food.paginate :page=>params[:page], :order =>'created_at asc',
-    :per_page=>9
+    # @foods = Food.paginate :page=>params[:page], :order =>'created_at asc',
+#     :per_page=>2
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @foods }

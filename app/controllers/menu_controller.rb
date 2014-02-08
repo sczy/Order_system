@@ -13,7 +13,7 @@ class MenuController < ApplicationController
     else
       @foods = TodayFood.gettodayfoods
     end
-
+     
     @foods =  @foods - FoodRole.select_food_by_role(1)
     @categories = Category.all
     @vendors = VendorRole.select_vendor_by_role(0)

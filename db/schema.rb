@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140121024609) do
+ActiveRecord::Schema.define(:version => 20140123062738) do
 
   create_table "categories", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -98,6 +98,10 @@ ActiveRecord::Schema.define(:version => 20140121024609) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "username"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

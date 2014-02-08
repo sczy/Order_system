@@ -1,12 +1,6 @@
 <div class="container">
   <div class="row ">
     <div class="col-xs-12 col-sm-12">
-      <!-- <div class="jumbotron">
-        <h2>FOODS</h2>
-        <p>good good good good good good good good </p>
-      </div> -->
-      
-      
         <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           
           <div class="modal-dialog">
@@ -62,7 +56,7 @@
         </div>
         <% end %>
       </div>
-      <p><%= will_paginate @foods %></p>
+      <p><%#= will_paginate @foods, :inner_window=>1,:outer_window=>1, :previous_label => '<上一页', :next_label => '下一页>', :renderer => WillPaginate::ActionView::LinkRenderer %></p>
     </div>
   </div>
   <hr>

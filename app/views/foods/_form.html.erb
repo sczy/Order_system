@@ -44,8 +44,14 @@
   
   <div class="field">
     <%= f.label :vendor, "商家" %><br />
-    <%= select_tag :vendor, options_for_select(Vendor.all.map{ |v| [v.title, v.id] }),
-       { :class => 'form-control' } %>
+    <% if @food.food_vendor %>
+    <% vendor = [@food.food_vendor.vendor] %>
+      <%= select_tag :vendor, options_for_select((Vendor.all - vendor).map{ |v| [v.title, v.id] }),
+         { :class => 'form-control', :prompt => "#{@food.food_vendor.vendor.title}",} %>
+    <% else %>
+      <%= select_tag :vendor, options_for_select(Vendor.all.map{ |v| [v.title, v.id] }),
+         { :class => 'form-control'} %>
+    <%end%>
   </div>
   
   <div class="actions">
