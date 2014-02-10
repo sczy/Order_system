@@ -37,6 +37,7 @@ set :unicorn_config, "#{deploy_to}/current/config/unicorn.rb"
 set :unicorn_pid, '#{deploy_to}/current/tmp/pids/unicorn.pid'
 
 set :rvm_ruby_version, ' 2.0.0@rails402' 
+set :default_env, { path: "~/.rbenv/shims:~/.rbenv/bin:$PATH" }
 
 # Default value for :linked_files is []
 # set :linked_files, %w{config/database.yml}
@@ -57,11 +58,10 @@ namespace :deploy do
     on roles(:all), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
       # execute :touch, release_path.join('tmp/restart.txt')
-      execute "crontab -r"
       within current_path do
         execute :bundle, 'exec unicorn_rails -c /var/www/order_system/current/config/unicorn.rb -D -E production'
         execute :bundle, "exec whenever -i"
-        execute :bundle, 'exec script/delayed_job start RAILS_ENV=development'
+        execute :bundle, 'exec script/delayed_job start RAILS_ENV=production'
       end
     end
   end
@@ -98,7 +98,6 @@ namespace :order_unicorn do
       execute "kill -s USR2 $(cat /var/www/order_system/current/tmp/pids/unicorn.pid)"
     end
   end
-
 end
 
 
@@ -112,19 +111,45 @@ namespace :order_whenever do
   end
 end
 
-namespace :order_delayed_job do
-  task :start do
-    on roles(:all), in: :sequence, wait: 5 do
-      within current_path do
-       execute :bundle, 'exec script/delayed_job start RAILS_ENV=development'
+
+namespace :delayed_job do
+  def args
+    fetch(:delayed_job_args, "")
+  end
+
+  def delayed_job_roles
+    fetch(:delayed_job_server_role, :app)
+  end
+
+  desc 'Stop the delayed_job process'
+  task :stop do
+    on roles(delayed_job_roles) do
+      within release_path do    
+        with rails_env: fetch(:rails_env) do
+          execute :'script/delayed_job', :stop
+        end
       end
     end
   end
-  
-  task :stop do
-    on roles(:all), in: :sequence, wait: 5 do
-      within current_path do
-       execute :bundle, 'exec script/delayed_job stop RAILS_ENV=development'
+
+  desc 'Start the delayed_job process'
+  task :start do
+    on roles(delayed_job_roles) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :'script/delayed_job', args, :start
+        end
+      end
+    end
+  end
+
+  desc 'Restart the delayed_job process'
+  task :restart do
+    on roles(delayed_job_roles) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :'script/delayed_job', args, :restart
+        end
       end
     end
   end

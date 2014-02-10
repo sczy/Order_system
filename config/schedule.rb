@@ -27,8 +27,8 @@
 # end
 
 every 1.day, :at => '12:00 am' do
-  runner "VoteItem.clear", :environment => "development"
+  runner "VoteItem.clear", :environment => "production"
 end
 every 1.day, :at => '10:00 am' do
-  runner "TodayFood.timetask_start", :environment => "development"
+  runner "TodayFood.timetask_start", :environment => "production"
 end
