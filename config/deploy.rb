@@ -61,7 +61,6 @@ namespace :deploy do
       within current_path do
         execute :bundle, 'exec unicorn_rails -c /var/www/order_system/current/config/unicorn.rb -D -E production'
         execute :bundle, "exec whenever -i"
-        execute :bundle, 'exec script/delayed_job start RAILS_ENV=production'
       end
     end
   end
